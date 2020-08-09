@@ -19,4 +19,4 @@
     docker-compose up -d
 
 
-```N:B: If it helps put a start. Thanks.```
+```N:B: If it helps put a star. Thanks.```
