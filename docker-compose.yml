@@ -1,0 +1,62 @@
+version: '3'
+services:
+  web:
+    build:
+      context: .docker
+      dockerfile: Dockerfile
+    ports:
+      - 8888:8080
+    network_mode: host
+    depends_on:
+      - sftp-server
+      - mysql
+
+  mysql:
+    image: mysql:5.7
+    ports:
+      - 3307:3306
+    environment:
+      MYSQL_ROOT_PASSWORD: docker-root-pass
+      MYSQL_DATABASE: docker-db
+      MYSQL_USER: docker-user
+      MYSQL_PASSWORD: docker-pass
+    volumes:
+      - "./volumes/mysql:/var/lib/mysql:rw"
+      - "./volumes/config/my.conf:/etc/mysql/conf.d/config-file.cnf"
+
+  sftp-server:
+    image: atmoz/sftp
+    volumes:
+      - "./volumes/sftp/cps/eft:/home/vanguard/cps/eft"
+      - "./volumes/sftp/cps/beft:/home/vanguard/cps/beft"
+      - "./volumes/sftp/bank/dhaka_bank/actoac:/home/vanguard/bank/dhaka_bank/actoac"
+      - "./volumes/sftp/bank/dhaka_bank/beftn:/home/vanguard/bank/dhaka_bank/beftn"
+      - "./volumes/sftp/bank/dhaka_bank/rtgs:/home/vanguard/bank/dhaka_bank/rtgs"
+      - "./volumes/sftp/bank/brac_bank/actoac:/home/vanguard/bank/brac_bank/actoac"
+      - "./volumes/sftp/bank/brac_bank/beftn:/home/vanguard/bank/brac_bank/beftn"
+      - "./volumes/sftp/bank/brac_bank/rtgs:/home/vanguard/bank/brac_bank/rtgs"
+      - "./volumes/sftp/bank/city_bank/actoac:/home/vanguard/bank/city_bank/actoac"
+      - "./volumes/sftp/bank/city_bank/beftn:/home/vanguard/bank/city_bank/beftn"
+      - "./volumes/sftp/bank/city_bank/rtgs:/home/vanguard/bank/city_bank/rtgs"
+      - "./volumes/sftp/bank/southeast_bank/actoac:/home/vanguard/bank/southeast_bank/actoac"
+      - "./volumes/sftp/bank/southeast_bank/beftn:/home/vanguard/bank/southeast_bank/beftn"
+      - "./volumes/sftp/bank/southeast_bank/rtgs:/home/vanguard/bank/southeast_bank/rtgs"
+      - "./volumes/sftp/bank/mutual_trust_bank/actoac:/home/vanguard/bank/mutual_trust_bank/actoac"
+      - "./volumes/sftp/bank/mutual_trust_bank/beftn:/home/vanguard/bank/mutual_trust_bank/beftn"
+      - "./volumes/sftp/bank/mutual_trust_bank/rtgs:/home/vanguard/bank/mutual_trust_bank/rtgs"
+      - "./volumes/sftp/bank/united_commercial_bank/actoac:/home/vanguard/bank/united_commercial_bank/actoac"
+      - "./volumes/sftp/bank/united_commercial_bank/beftn:/home/vanguard/bank/united_commercial_bank/beftn"
+      - "./volumes/sftp/bank/united_commercial_bank/rtgs:/home/vanguard/bank/united_commercial_bank/rtgs"
+      - "./volumes/sftp/bank/jamuna_bank/actoac:/home/vanguard/bank/jamuna_bank/actoac"
+      - "./volumes/sftp/bank/jamuna_bank/beftn:/home/vanguard/bank/jamuna_bank/beftn"
+      - "./volumes/sftp/bank/jamuna_bank/rtgs:/home/vanguard/bank/jamuna_bank/rtgs"
+      - "./volumes/sftp/bank/ncc_bank/actoac:/home/vanguard/bank/ncc_bank/actoac"
+      - "./volumes/sftp/bank/ncc_bank/beftn:/home/vanguard/bank/ncc_bank/beftn"
+      - "./volumes/sftp/bank/ncc_bank/rtgs:/home/vanguard/bank/ncc_bank/rtgs"
+      - "./volumes/sftp/bank/sonali_bank/actoac:/home/vanguard/bank/sonali_bank/actoac"
+      - "./volumes/sftp/bank/sonali_bank/beftn:/home/vanguard/bank/sonali_bank/beftn"
+      - "./volumes/sftp/bank/sonali_bank/rtgs:/home/vanguard/bank/sonali_bank/rtgs"
+      - "./.docker/ssh/id_rsa.pub:/home/vanguard/.ssh/keys/id_rsa.pub"
+    ports:
+      - "2201:22"
+    command: vanguard:vanguardpass:1001
