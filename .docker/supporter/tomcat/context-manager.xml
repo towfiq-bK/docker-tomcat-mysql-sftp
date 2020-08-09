@@ -2,13 +2,6 @@
 <Context antiResourceLocking="false" privileged="true">
     <!-- Default set of monitored resources -->
     <WatchedResource>WEB-INF/web.xml</WatchedResource>
-
-    <!-- Disable session persistence across Tomcat restarts -->
-
-        <Manager pathname="/manager/html" />
-
-    <!-- Enable Comet connection tracking (provides events
-         on session expiration as well as webapp lifecycle) -->
 <!--    <Valve className="org.apache.catalina.valves.RemoteAddrValve"-->
 <!--           allow="127.0.0.1,0.0.0.0,::1" />-->
     <Manager
