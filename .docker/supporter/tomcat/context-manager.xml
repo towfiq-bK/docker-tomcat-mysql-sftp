@@ -1,9 +1,0 @@
-<?xml version="1.0" encoding="UTF-8"?>
-<Context antiResourceLocking="false" privileged="true">
-    <!-- Default set of monitored resources -->
-    <WatchedResource>WEB-INF/web.xml</WatchedResource>
-<!--    <Valve className="org.apache.catalina.valves.RemoteAddrValve"-->
-<!--           allow="127.0.0.1,0.0.0.0,::1" />-->
-    <Manager
-            sessionAttributeValueClassNameFilter="java\.lang\.(?:Boolean|Integer|Long|Number|String)|org\.apache\.catalina\.filters\.CsrfPreventionsFilter\$LruCache(?:\$1)?|java\.util\.(?:Linked)?HasMap"/>
-</Context>
