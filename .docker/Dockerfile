@@ -33,8 +33,8 @@ RUN wget --load-cookies /tmp/cookies.txt \
             -O apache-tomcat-${TOMCAT_VERSION}.tar.gz && rm -rf /tmp/cookies.txt
 RUN tar -xvf apache-tomcat-${TOMCAT_VERSION}.tar.gz && rm apache-tomcat*.tar.gz && mv apache-tomcat* ${CATALINA_HOME}
 
-RUN echo 'CATALINA_OPTS="-Xms256m -Xmx512m"' > ${CATALINA_HOME}/bin/setenv.sh
-RUN echo 'CATALINA_OPTS="-Xms256m -Xmx512m"' > ${CATALINA_HOME}/bin/setenv.bat
+RUN echo 'CATALINA_OPTS="-Xms512M -Xmx1024M -server -XX:+UseParallelGC -Dspring.profiles.active=dev"' > ${CATALINA_HOME}/bin/setenv.sh
+RUN echo 'CATALINA_OPTS="-Xms256m -Xmx512m -XX:+UseParallelGC -Dspring.profiles.active=dev"' > ${CATALINA_HOME}/bin/setenv.bat
 RUN chmod +x ${CATALINA_HOME}/bin/*sh
 
 WORKDIR /opt/tomcat
