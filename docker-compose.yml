@@ -10,6 +10,9 @@ services:
     depends_on:
       - sftp-server
       - mysql
+    volumes:
+    - "./volumes/tomcat/deploy/:/usr/local/tomcat/webapps/:rw"
+    - "./volumes/tomcat/logs/:/usr/local/tomcat/logs/:rw"
 
   mysql:
     image: mysql:5.7
