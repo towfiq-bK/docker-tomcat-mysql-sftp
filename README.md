@@ -25,7 +25,7 @@
 After deploying the `war` file, `deployed-project-name.log`, `catalina.log` and others tomcat provided logs will be found in `volumes/tomcat/logs` directory. This `volumes/tomcat/logs` directory is linked with `/opt/tomcat/logs` directory.
 
 ### MySql Setup:
-By changing mysql environment variables which are enlisted in `docker-compose.yml` file under `mysql` service one can easyly configure `mysql database`
+By changing mysql environment variables which are enlisted in `docker-compose.yml` file under `mysql` service one can easily configure `mysql database`
 
       MYSQL_ROOT_PASSWORD: {ROOT-PASSWORD}
       MYSQL_DATABASE: {DATABASE-NAME}
