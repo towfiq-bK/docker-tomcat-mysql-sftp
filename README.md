@@ -17,9 +17,9 @@
     docker-compose up -d
     ```
 ### Give Permission to Volumes: 
-    chmod 777 -R vloumes
+    chmod 777 -R volumes
 
-### Deploy Projest:
+### Deploy Project:
  Copy the deployable `war` file into `volumes/tomcat/deploy` directory. This `volumes/tomcat/deploy` directory is the symbolic link of `/opt/tomcat/webapps` directory. Which means tomcat will automatically detect the copied `war` file and will start deploying it.
 
 After deploying the `war` file, `deployed-project-name.log`, `catalina.log` and others tomcat provided logs will be found in `volumes/tomcat/logs` directory. This `volumes/tomcat/logs` directory is linked with `/opt/tomcat/logs` directory.
