@@ -10,22 +10,68 @@ services:
     depends_on:
       - sftp-server
       - mysql
+    volumes:
+    - "./volumes/tomcat/deploy/:/opt/tomcat/multibank/:rw"
 
   mysql:
     image: mysql:5.7
     ports:
       - 3307:3306
     environment:
-      MYSQL_ROOT_PASSWORD: docker-root-pass
-      MYSQL_DATABASE: docker-db
-      MYSQL_USER: docker-user
-      MYSQL_PASSWORD: docker-pass
+      MYSQL_ROOT_PASSWORD: bkash@123123
+      MYSQL_DATABASE: multibank
+      MYSQL_USER: bkash-dev
+      MYSQL_PASSWORD: bkash@123123
     volumes:
       - "./volumes/mysql:/var/lib/mysql:rw"
       - "./volumes/config/my.conf:/etc/mysql/conf.d/config-file.cnf"
 
   sftp-server:
     image: atmoz/sftp
+    volumes:
+      - "./volumes/sftp/cps/distributor/BRAC:/home/vanguard/cpsftp/Financial/201000000000055004/Files/800000000101007543/EFT/working/:rw"
+      - "./volumes/sftp/cps/distributor/CITY:/home/vanguard/cpsftp/Financial/201000000000054004/Files/800000000101006545/EFT/working/:rw"
+      - "./volumes/sftp/cps/distributor/MTBL:/home/vanguard/cpsftp/Financial/201000000000054001/Files/800000000101006511/EFT/working/:rw"
+      - "./volumes/sftp/cps/distributor/UCBL:/home/vanguard/cpsftp/Financial/201000000000054002/Files/800000000101006529/EFT/working/:rw"
+      - "./volumes/sftp/cps/distributor/SEBL:/home/vanguard/cpsftp/Financial/201000000000054003/Files/800000000101006537/EFT/working/:rw"
+      - "./volumes/sftp/cps/distributor/MBL:/home/vanguard/cpsftp/Financial/201000000000054005/Files/800000000101006552/EFT/working/:rw"
+      - "./volumes/sftp/cps/distributor/JAMUNA:/home/vanguard/cpsftp/Financial/201000000000053005/Files/800000000101007014/EFT/working/:rw"
+      - "./volumes/sftp/cps/distributor/EBL:/home/vanguard/cpsftp/Financial/201000000000053006/Files/800000000101007022/EFT/working/:rw"
+      - "./volumes/sftp/cps/distributor/OBL:/home/vanguard/cpsftp/Financial/201000000000053007/Files/800000000101007030/EFT/working/:rw"
+      - "./volumes/sftp/cps/distributor/NCC:/home/vanguard/cpsftp/Financial/201000000000053008/Files/800000000101007048/EFT/working/:rw"
+      - "./volumes/sftp/cps/distributor/TBL:/home/vanguard/cpsftp/Financial/201000000000055002/Files/800000000101007527/EFT/working/:rw"
+      - "./volumes/sftp/cps/distributor/SONALI:/home/vanguard/cpsftp/Financial/201000000000055003/Files/800000000101007535/EFT/working/:rw"
+      - "./volumes/sftp/cps/distributor/ABL:/home/vanguard/cpsftp/Financial/201000000000053009/Files/800000000101007055/EFT/working/:rw"
+      - "./volumes/sftp/cps/distributor/DHAKA:/home/vanguard/cpsftp/Financial/201000000000055001/Files/800000000101007519/EFT/working/:rw"
+      - "./volumes/sftp/cps/schedule/:/home/vanguard/cpsftp/Financial/ScheduleRefundReportTask/ExportFile/:rw"
+      - "./volumes/sftp/bank/dhaka_bank/actoac:/home/vanguard/bank/dhaka_bank/actoac"
+      - "./volumes/sftp/bank/dhaka_bank/beftn:/home/vanguard/bank/dhaka_bank/beftn"
+      - "./volumes/sftp/bank/dhaka_bank/rtgs:/home/vanguard/bank/dhaka_bank/rtgs"
+      - "./volumes/sftp/bank/brac_bank/actoac:/home/vanguard/bank/brac_bank/actoac"
+      - "./volumes/sftp/bank/brac_bank/beftn:/home/vanguard/bank/brac_bank/beftn"
+      - "./volumes/sftp/bank/brac_bank/rtgs:/home/vanguard/bank/brac_bank/rtgs"
+      - "./volumes/sftp/bank/city_bank/actoac:/home/vanguard/bank/city_bank/actoac"
+      - "./volumes/sftp/bank/city_bank/beftn:/home/vanguard/bank/city_bank/beftn"
+      - "./volumes/sftp/bank/city_bank/rtgs:/home/vanguard/bank/city_bank/rtgs"
+      - "./volumes/sftp/bank/southeast_bank/actoac:/home/vanguard/bank/southeast_bank/actoac"
+      - "./volumes/sftp/bank/southeast_bank/beftn:/home/vanguard/bank/southeast_bank/beftn"
+      - "./volumes/sftp/bank/southeast_bank/rtgs:/home/vanguard/bank/southeast_bank/rtgs"
+      - "./volumes/sftp/bank/mutual_trust_bank/actoac:/home/vanguard/bank/mutual_trust_bank/actoac"
+      - "./volumes/sftp/bank/mutual_trust_bank/beftn:/home/vanguard/bank/mutual_trust_bank/beftn"
+      - "./volumes/sftp/bank/mutual_trust_bank/rtgs:/home/vanguard/bank/mutual_trust_bank/rtgs"
+      - "./volumes/sftp/bank/united_commercial_bank/actoac:/home/vanguard/bank/united_commercial_bank/actoac"
+      - "./volumes/sftp/bank/united_commercial_bank/beftn:/home/vanguard/bank/united_commercial_bank/beftn"
+      - "./volumes/sftp/bank/united_commercial_bank/rtgs:/home/vanguard/bank/united_commercial_bank/rtgs"
+      - "./volumes/sftp/bank/jamuna_bank/actoac:/home/vanguard/bank/jamuna_bank/actoac"
+      - "./volumes/sftp/bank/jamuna_bank/beftn:/home/vanguard/bank/jamuna_bank/beftn"
+      - "./volumes/sftp/bank/jamuna_bank/rtgs:/home/vanguard/bank/jamuna_bank/rtgs"
+      - "./volumes/sftp/bank/ncc_bank/actoac:/home/vanguard/bank/ncc_bank/actoac"
+      - "./volumes/sftp/bank/ncc_bank/beftn:/home/vanguard/bank/ncc_bank/beftn"
+      - "./volumes/sftp/bank/ncc_bank/rtgs:/home/vanguard/bank/ncc_bank/rtgs"
+      - "./volumes/sftp/bank/sonali_bank/actoac:/home/vanguard/bank/sonali_bank/actoac"
+      - "./volumes/sftp/bank/sonali_bank/beftn:/home/vanguard/bank/sonali_bank/beftn"
+      - "./volumes/sftp/bank/sonali_bank/rtgs:/home/vanguard/bank/sonali_bank/rtgs"
+      - "./.docker/ssh/id_rsa.pub:/home/vanguard/.ssh/keys/id_rsa.pub"
     ports:
       - "2201:22"
     command: vanguard:vanguardpass:1001
